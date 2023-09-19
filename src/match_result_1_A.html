@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./match_result.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+    </div>
+
+    <script>
+        let api_url = "https://script.googleusercontent.com/macros/echo?user_content_key=VztNt1LmC1RSnjEpJYufv5BqxRKFQTMdNl1LrLtYYUBZOvsyxyiixFQbdaXyT-9ih6-20XpqMjJK0nj4pv9tYzHlzj251e7Fm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnHmneGp54ZjsRe6KA6s-KBuFvwHqzTbag6ZUm_L-1o1JUruSodOaDPyYHfcg--cs4XK0G7am4XXMbR-7P9NP4L_s_sP4NGprlNz9Jw9Md8uu&lib=Mlqvv-1qPUTf4lZy3ZoYdGzuVbrdLrbj8";
+        
+        let container = $(".container");
+
+        let htmlData = "<div>";
+        fetch(api_url)
+            .then(function(fetch_data) {
+                return fetch_data.json();
+            })
+            .then(function(json) {
+                for (let i in json) {
+                    let apiData = "<p>";
+                    apiData += "<span>match: " + json[i].match + " </span>";
+                    apiData += "<span>table: " + json[i].table + " </span>";
+                    apiData += "<span>rank: " + json[i].rank + " </span>";
+                    apiData += "<span>playerImageUrl: " + json[i].playerImageUrl + " </span>";
+                    apiData += "<span>point: " + json[i].point + " </span>";
+                    apiData += "<span>section: " + json[i].section + " </span>";
+                    apiData += "</p>";
+                    htmlData += apiData;
+                }
+
+                htmlData += "</div>";
+                container.append(htmlData);
+            });
+
+        function makeTable(data) {
+
+        }
+    </script>
+</body>
+</html> 
